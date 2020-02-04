@@ -10,8 +10,10 @@ enum State { Init, Test, Check };
 
 export class TrialView extends View<ViewParameter> {
     private parameters: ViewParameter;
+    private errorCount: number;
 
     beforeRender(parameters: ViewParameter): void {
+        this.errorCount = 0;
         this.node = $("<div>").attr("id", "trial-view");
         this.parameters = parameters;
         this.setInitPanel();
@@ -99,12 +101,13 @@ export class TrialView extends View<ViewParameter> {
         
         let onClick = (event: any) => {
             if ($(event.target).hasClass("target")) {
-                EventManager.emit(new TrialSuccessEvent(duration));
+                EventManager.emit(new TrialSuccessEvent(duration, this.errorCount));
                 console.log(duration);
                 this.node
                     .find(".cell")
                     .off("click", onClick);
             } else {
+                this.errorCount += 1;
                 this.node.children().remove();
                 this.setInitPanel();
             }
@@ -142,13 +145,14 @@ export class TrialView extends View<ViewParameter> {
         possibilities.forEach((possibility) => {
             colors.push(possibility);
             colors.push(possibility);
-        })
+        });
 
         while (colors.length < n - 1) {
             possibility = possibilities[Math.floor(Math.random() * possibilities.length)];
             colors.push(possibility);
         }
 
+        colors.sort(() => Math.random() - 0.5);
         colors.splice(differentTargetIndex, 0, unique);
         
         return colors;
