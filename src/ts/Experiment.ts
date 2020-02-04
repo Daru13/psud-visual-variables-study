@@ -6,6 +6,6 @@ export class Experiment {
 
     constructor() {
         this.viewManager = new ViewManager();
-        this.viewManager.showView(PossibleViews.PAUSE, null);
+        this.viewManager.showView(PossibleViews.TRIAL, null);
     }
 }
