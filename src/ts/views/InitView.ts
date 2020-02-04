@@ -1,6 +1,6 @@
 import "jquery";
 import { View } from "./View";
-import { NewUserEvent } from "../events/NewUserEvent";
+import { NewUserEvent } from "../events/SetupCompletionEvent";
 import { EventManager } from "../events/EventManager";
 
 interface ViewParameter { };

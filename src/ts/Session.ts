@@ -19,4 +19,26 @@ export class Session {
         this.currentTrialIndex = 0;
         this.currentTrial = this.trials[0];
     }
+
+    isCurrentBlockFinished(): boolean {
+        return this.isSessionFinished()
+            || this.currentTrial.block !== this.trials[this.currentTrialIndex + 1].block;
+    }
+
+    isSessionFinished(): boolean {
+        return this.currentTrialIndex === this.trials.length - 1;
+    }
+
+    getCurrentTrial(): Trial {
+        return this.currentTrial;
+    }
+
+    endCurrentTrial(): void {
+        if (this.isSessionFinished()) {
+            return;
+        }
+
+        this.currentTrialIndex++;
+        this.currentTrial = this.trials[this.currentTrialIndex];
+    }
 }
