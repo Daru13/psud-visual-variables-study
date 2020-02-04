@@ -26,12 +26,36 @@
     height: 100%;
 }
 
-.test-state.hue .cell {
+.test-state .cell.hue {
     background-color: hsl(15, 100%, 50%);
 }
 
-.test-state.hue .target.cell {
+.test-state .cell.hue-alternate {
     background-color: hsl(75, 100%, 50%);
+}
+
+.test-state .cell.saturation {
+    background-color: hsl(50, 40%, 50%);
+}
+
+.test-state .cell.saturation-alternate {
+    background-color: hsl(50, 70%, 50%);
+}
+
+.test-state .cell.hue.saturation {
+    background-color: hsl(15, 40%, 50%);
+}
+
+.test-state .cell.hue-alternate.saturation {
+    background-color: hsl(75, 40%, 50%);
+}
+
+.test-state .cell.hue.saturation-alternate {
+    background-color: hsl(15, 70%, 50%);
+}
+
+.test-state .cell.hue-alternate.saturation-alternate {
+    background-color: hsl(75, 70%, 50%);
 }
 
 .check-state .cell {

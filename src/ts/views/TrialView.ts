@@ -1,14 +1,12 @@
 import { View } from "./View";
 import { EventManager } from "../events/EventManager";
 import { SuccesEvent } from "../events/SuccesEvent";
+import { VisualVariable, ObjectCount } from "../Trial";
 
-interface ViewParameter {vv: number, oc: number};
-
-enum State { Init, Test, Check };
+interface ViewParameter { visualVariable: VisualVariable, objectCount: ObjectCount};
 
 export class TrialView extends View<ViewParameter> {
     private parameters: ViewParameter;
-    private state: State;
 
     beforeRender(parameters: ViewParameter): void {
         this.node = $("<div>").attr("id", "trial-view");
@@ -25,8 +23,6 @@ export class TrialView extends View<ViewParameter> {
     }
 
     private setInitPanel() {
-        this.state = State.Init;
-
         $("<p>").text("You will be presented multiple objects. Only one looks different than the others. You will have to press SPACE as soon as you got it.")
         .appendTo(this.node);
 
@@ -45,39 +41,35 @@ export class TrialView extends View<ViewParameter> {
     }
 
     private setTestPanel() {
-        this.state = State.Test;
-
         let temp = 2;
         let vv = 1;
         let grid = $('<div>').addClass("test-state");
         let n: number;
 
-        switch(temp) {
-            case 1:
+        switch(this.parameters.objectCount) {
+            case ObjectCount.Low:
                 grid.addClass("low");
                 n = 9;
                 break;
-            case 2:
+            case ObjectCount.Medium:
                 grid.addClass("medium");
                 n = 16;
                 break;
-            case 3:
+            case ObjectCount.High:
                 grid.addClass("high");
                 n = 25;
                 break;
-        }
-
-        switch(vv){
-            case 1:
-                grid.addClass("hue");
-                break;
+            case ObjectCount.Unknown:
+                console.error("Object Count not known");
         }
 
         let differentTargetIndex = Math.floor(Math.random() * n);
+        let colors = this.getColorList(n, differentTargetIndex);
 
         for(let i = 0; i < n; i++){
             $('<div>')
                 .addClass((i === differentTargetIndex)? "cell target" : "cell")
+                .addClass(colors[i])
                 .appendTo(grid);
         }
         
@@ -85,6 +77,7 @@ export class TrialView extends View<ViewParameter> {
 
         let onSpace = (e: any) => {
             if (e.key === " ") {
+                console.log("kdskfls")
                 $("body").off("keyup", onSpace);
                 this.setCheckPanel(Date.now() - startTime);
             }
@@ -96,7 +89,6 @@ export class TrialView extends View<ViewParameter> {
     }
 
     private setCheckPanel(duration: number) {
-        this.state = State.Check;
         this.node
             .find(".test-state")
             .removeClass("test-state")
@@ -118,5 +110,44 @@ export class TrialView extends View<ViewParameter> {
         this.node
             .find(".cell")
             .on("click", onClick);
+    }
+
+    private getColorList(n: number, differentTargetIndex: number): string[] {
+        let colors: string[] = [];
+        let possibilities = [];
+        switch (this.parameters.visualVariable) {
+            case VisualVariable.Hue:
+                possibilities.push("hue");
+                possibilities.push("hue-alternate");
+                break;
+            case VisualVariable.Saturation:
+                possibilities.push("saturation");
+                possibilities.push("saturation-alternate");
+                break;
+            case VisualVariable.HueAndSaturation:
+                possibilities.push("hue saturation");
+                possibilities.push("hue-alternate saturation");
+                possibilities.push("hue saturation-alternate");
+                possibilities.push("hue-alternate saturation-alternate");
+        }
+
+        possibilities.sort(() => Math.random() - 0.5);
+
+        let unique = possibilities.pop();
+        let possibility;
+
+        possibilities.forEach((possibility) => {
+            colors.push(possibility);
+            colors.push(possibility);
+        })
+
+        while (colors.length < n - 1) {
+            possibility = possibilities[Math.floor(Math.random() * possibilities.length)];
+            colors.push(possibility);
+        }
+
+        colors.splice(differentTargetIndex, 0, unique);
+        
+        return colors;
     }
 }
