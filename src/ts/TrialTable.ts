@@ -415,7 +415,7 @@ export type CSVDataRow = Record<string, string>;
 export type CSVData = CSVDataRow[];
 
 export class TrialTable {
-
+    readonly sourceCSVData: CSVData;
     participantTrials: Map<ParticipantID, Trial[]>;
 
     private constructor(csvData: CSVData) {

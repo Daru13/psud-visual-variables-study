@@ -7,6 +7,7 @@ import { EventManager } from './events/EventManager';
 import { SetupCompletionEvent } from './events/SetupCompletionEvent';
 import { TrialSuccessEvent } from './events/TrialSuccessEvent';
 import { PauseTimeoutEvent } from './events/PauseTimeoutEvent';
+import { Logger } from "./Logger";
 
 enum ExperimentState {
     Init,
@@ -21,6 +22,7 @@ export class Experiment {
 
     private viewManager: ViewManager;
     private trialTable: TrialTable;
+    private logger: Logger;
     private session: Session;
 
     constructor() {
@@ -28,6 +30,7 @@ export class Experiment {
 
         this.viewManager = new ViewManager();
         this.trialTable = TrialTable.fromCSV();
+        this.logger = new Logger(this.trialTable);
         this.session = null;
 
         console.log(this);
