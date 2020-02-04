@@ -1,0 +1,39 @@
+{
+  "name": "visual-variables-study",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Basic experiment about pre-attention and visual variables.",
+  "main": "build/main.min.js",
+  "scripts": {
+    "init": "yarn",
+    "build": "rollup -c",
+    "watch": "rollup -cw",
+    "clean": "rm -rf build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Daru13/psud-visual-variables-study.git"
+  },
+  "author": "Camille G. <daru14@gmail.com>",
+  "contributors": [
+    "Camille G. <daru14@gmail.com>",
+    "Adrien C. <chaffangeon.adrien@gmail.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Daru13/psud-visual-variables-study/issues"
+  },
+  "homepage": "https://github.com/Daru13/psud-visual-variables-study#readme",
+  "dependencies": {
+    "jquery": "^3.4.1"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.3.31",
+    "rollup": "^1.29.0",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-terser": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.5"
+  }
+}
