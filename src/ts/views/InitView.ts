@@ -3,10 +3,10 @@ import { View } from "./View";
 import { SetupCompletionEvent } from "../events/SetupCompletionEvent";
 import { EventManager } from "../events/EventManager";
 
-interface ViewParameter { };
+interface ViewParameter { participantsNb: number };
 
 export class InitView extends View<ViewParameter> {
-    beforeRender(): void {
+    beforeRender(parameters: ViewParameter): void {
         this.node = $("<div>").attr("id", "init-view");
         
         $("<p>").text("Welcome!").appendTo(this.node);
@@ -21,6 +21,8 @@ export class InitView extends View<ViewParameter> {
         let userIdInput = $("<input>")
             .attr("id", "user-id-input")
             .attr("type", "number")
+            .attr("min", "1")
+            .attr("max", parameters.participantsNb.toString())
             .appendTo(inputNode);
 
         $("<button>")

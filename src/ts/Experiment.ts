@@ -38,7 +38,8 @@ export class Experiment {
 
     private beginSetup() {
         this.state = ExperimentState.Setup;
-        this.viewManager.showView(PossibleViews.INIT, null);
+        const participantsNb = this.trialTable.participantTrials.size;
+        this.viewManager.showView(PossibleViews.INIT, { participantsNb: participantsNb });
     }
 
     private beginSession() {
