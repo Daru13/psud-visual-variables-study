@@ -33,11 +33,11 @@ export class TrialView extends View<ViewParameter> {
         $("<p>").text("You will be presented multiple objects. Only one looks different than the others. You will have to press SPACE as soon as you got it.")
         .appendTo(div);
 
-        $("<p>").text("Press ENTER when ready.")
+        $("<p>").text("Press SPACE when ready.")
             .appendTo(div);
 
         let onEnter = (e: any) => {
-            if (e.key === "Enter") {
+            if (e.key === " ") {
                 $("body").off("keyup", onEnter);
                 this.node.children().remove();
                 this.setTestPanel();
