@@ -1,22 +1,15 @@
 export type EventID = string;
 
-/** Interface for personalized events. */
 export interface Event {
-	id: EventID;
+	readonly id: EventID;
 }
 
 export type EventHandler<E extends Event> = (event: E) => void;
 
-/** A class to emit events, add event listeners and remove event listeners. */
 export class EventManager {
 
-    /** List of event listener per personalized event. */
 	private static eventHandlers: Map<EventID, EventHandler<any>[]> = new Map();
 
-    /**
-     * Emits an event.
-     * @param event event to emit.
-     */
     static emit(event: Event): void {
 		let eventID = event.id;
 
@@ -30,27 +23,17 @@ export class EventManager {
 		}
 	}
 
-    /**
-     * Registers a handler for an event.
-     * @param eventID event that the handler wants to receive.
-     * @param handler the handler to register.
-     */
-    static registerHandler<E extends Event>(eventID: EventID, handler: EventHandler<E>): void {
-		if (! EventManager.eventHandlers.has(eventID)) {
-			EventManager.eventHandlers.set(eventID, []);
+    static registerHandler<E extends Event>(event: { readonly id: EventID }, handler: EventHandler<E>): void {
+		if (! EventManager.eventHandlers.has(event.id)) {
+			EventManager.eventHandlers.set(event.id, []);
 		}
 
-		let handlers = EventManager.eventHandlers.get(eventID);
+		let handlers = EventManager.eventHandlers.get(event.id);
 		handlers.push(handler);
     }
     
-    /**
-     * Unregisters a handler for an event.
-     * @param eventID event that the handler wants to be removed from.
-     * @param handler the handler to unregister.
-     */
-	static unregisterHandler<E extends Event>(eventID: EventID, handler: EventHandler<E>): void {
-		let handlers = EventManager.eventHandlers.get(eventID);
+	static unregisterHandler<E extends Event>(event: { readonly id: EventID }, handler: EventHandler<E>): void {
+		let handlers = EventManager.eventHandlers.get(event.id);
 		let handlerIndex = handlers.indexOf(handler);
 
 		if (handlerIndex >= 0) {
@@ -58,7 +41,7 @@ export class EventManager {
 		}
 
 		if (handlers.length === 0) {
-			EventManager.eventHandlers.delete(eventID);
+			EventManager.eventHandlers.delete(event.id);
 		}
 	}
 }

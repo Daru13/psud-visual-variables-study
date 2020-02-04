@@ -1,11 +1,13 @@
 import { Event } from './EventManager';
+import { ParticipantID } from '../Session';
 
-/** A class for an event when the tape position changed. */
-export class NewUserEvent implements Event {
-  id: string = "newUser";
-  userId: number;
+export class SetupCompletionEvent implements Event {
+  static readonly id = "setupCompletion";
+  readonly id = SetupCompletionEvent.id;
 
-  constructor(userId: number) {
-    this.userId = userId;
+  readonly participantID: ParticipantID;
+
+  constructor(participantID: ParticipantID) {
+    this.participantID = participantID;
   }
 }

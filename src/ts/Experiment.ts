@@ -4,7 +4,9 @@ import { TrialTable } from "./TrialTable";
 import { Session } from "./Session";
 import { VisualVariable, ObjectCount } from "./Trial";
 import { EventManager } from './events/EventManager';
-import { NewUserEvent } from './events/SetupCompletionEvent';
+import { SetupCompletionEvent } from './events/SetupCompletionEvent';
+import { TrialSuccessEvent } from './events/TrialSuccessEvent';
+import { PauseTimeoutEvent } from './events/PauseTimeoutEvent';
 
 enum ExperimentState {
     Init,
@@ -30,6 +32,7 @@ export class Experiment {
 
         console.log(this);
 
+        this.registerEventHandlers();
         this.beginSetup();
     }
 
@@ -65,8 +68,8 @@ export class Experiment {
         this.viewManager.showView(PossibleViews.TRIAL, trial);
     }
 
-    private onSetupCompletion(event: NewUserEvent) {
-        this.session = new Session(this.trialTable, event.userId);
+    private onSetupCompletion(event: SetupCompletionEvent) {
+        this.session = new Session(this.trialTable, event.participantID);
         this.beginSession();
     }
 
@@ -87,6 +90,8 @@ export class Experiment {
     }
 
     private registerEventHandlers() {
-        // TODO
+        EventManager.registerHandler(SetupCompletionEvent, (event: SetupCompletionEvent) => this.onSetupCompletion(event));
+        EventManager.registerHandler(TrialSuccessEvent, () => this.onTrialSuccess());
+        EventManager.registerHandler(PauseTimeoutEvent, () => this.onPauseTimeout());
     }
 }

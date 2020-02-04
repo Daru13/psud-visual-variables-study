@@ -1,6 +1,6 @@
 import { Event } from './EventManager';
 
-/** A class for an event when the tape position changed. */
-export class SetupCompletion implements Event {
-  id: string = "setupCompletion";
+export class PauseTimeoutEvent implements Event {
+  static readonly id = "pauseTimeout";
+  readonly id = PauseTimeoutEvent.id;
 }

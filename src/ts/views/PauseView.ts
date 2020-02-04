@@ -1,6 +1,6 @@
 import { View } from "./View";
 import { EventManager } from "../events/EventManager";
-import { SetupCompletion } from "../events/PauseTimeoutEvent";
+import { PauseTimeoutEvent } from "../events/PauseTimeoutEvent";
 
 interface ViewParameter { };
 
@@ -17,7 +17,7 @@ export class PauseView extends View<ViewParameter> {
     render(): void {
         $("body").append(this.node);
         this.timer = window.setTimeout(() => {
-            EventManager.emit(new SetupCompletion());
+            EventManager.emit(new PauseTimeoutEvent());
             console.log("Pause end");
         }, PauseView.PAUSE_DURATION);
     }

@@ -1,9 +1,12 @@
 import { View } from "./View";
 import { EventManager } from "../events/EventManager";
-import { SuccesEvent } from "../events/SuccesEvent";
 import { VisualVariable, ObjectCount } from "../Trial";
+import { TrialSuccessEvent } from "../events/TrialSuccessEvent";
+import { Trial } from "../Trial";
 
-interface ViewParameter { visualVariable: VisualVariable, objectCount: ObjectCount};
+type ViewParameter = Trial;
+
+enum State { Init, Test, Check };
 
 export class TrialView extends View<ViewParameter> {
     private parameters: ViewParameter;
@@ -96,7 +99,7 @@ export class TrialView extends View<ViewParameter> {
         
         let onClick = (event: any) => {
             if ($(event.target).hasClass("target")) {
-                EventManager.emit(new SuccesEvent(duration));
+                EventManager.emit(new TrialSuccessEvent(duration));
                 console.log(duration);
                 this.node
                     .find(".cell")
