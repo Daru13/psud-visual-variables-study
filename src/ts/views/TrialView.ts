@@ -82,7 +82,6 @@ export class TrialView extends View<ViewParameter> {
 
         let onSpace = (e: any) => {
             if (e.key === " ") {
-                console.log("kdskfls")
                 $("body").off("keyup", onSpace);
                 this.setCheckPanel(Date.now() - startTime);
             }
