@@ -1,10 +1,10 @@
-import { Trial } from "./Trial";
+import { Trial, TrialID } from "./Trial";
 import { TrialTable } from "./TrialTable";
 
 export type ParticipantID = number;
 
 export class Session {
-    private participantID: number;
+    readonly participantID: number;
 
     private trials: Trial[];
     private currentTrialIndex: number;

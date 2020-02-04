@@ -52,7 +52,10 @@ export class Experiment {
 
     private endSession() {
         this.state = ExperimentState.Finished;
-        // TODO
+        this.viewManager.showView(PossibleViews.FINAL, {
+            filename: `P${this.session.participantID}-${Date.now()}`,
+            csv: this.logger.toCSV()
+        });
     }
 
     private beginPause() {
@@ -77,7 +80,15 @@ export class Experiment {
         this.beginSession();
     }
 
-    private onTrialSuccess() {
+    private onTrialSuccess(event: TrialSuccessEvent) {
+        // Log the results of the current trial
+        this.logger.log({
+            trialID: this.session.getCurrentTrial().trialID,
+            duration: event.duration,
+            nbErrors: event.errorCount
+        });
+
+        // Continue the experiment
         if (this.session.isSessionFinished()) {
             this.endSession();
         }
@@ -95,7 +106,7 @@ export class Experiment {
 
     private registerEventHandlers() {
         EventManager.registerHandler(SetupCompletionEvent, (event: SetupCompletionEvent) => this.onSetupCompletion(event));
-        EventManager.registerHandler(TrialSuccessEvent, () => this.onTrialSuccess());
+        EventManager.registerHandler(TrialSuccessEvent, (event: TrialSuccessEvent) => this.onTrialSuccess(event));
         EventManager.registerHandler(PauseTimeoutEvent, () => this.onPauseTimeout());
     }
 }
