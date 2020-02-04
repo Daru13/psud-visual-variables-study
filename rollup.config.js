@@ -12,6 +12,7 @@ export default {
       format: "umd",
       globals: {
         "jquery": "jquery",
+        "papaparse": "Papa",
       },
       plugins: [terser()]
     }
