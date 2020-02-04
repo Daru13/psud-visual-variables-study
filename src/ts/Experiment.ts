@@ -53,7 +53,7 @@ export class Experiment {
     private endSession() {
         this.state = ExperimentState.Finished;
         this.viewManager.showView(PossibleViews.FINAL, {
-            filename: `P${this.session.participantID}-${Date.now()}`,
+            fileName: `P${this.session.participantID}-${Date.now()}`,
             csv: this.logger.toCSV()
         });
     }
