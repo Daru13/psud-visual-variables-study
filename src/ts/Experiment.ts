@@ -1,8 +1,11 @@
 import "jquery";
+import { ViewManager, PossibleViews } from "./ViewManager";
 
 export class Experiment {
+    private viewManager: ViewManager;
+
     constructor() {
-        console.log("Hello world!");
-        $("body").append("<p>Test</p>");
+        this.viewManager = new ViewManager();
+        this.viewManager.showView(PossibleViews.PAUSE, null);
     }
 }
