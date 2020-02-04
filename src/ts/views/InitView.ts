@@ -7,7 +7,6 @@ interface ViewParameter { };
 
 export class InitView extends View<ViewParameter> {
     beforeRender(): void {
-        console.log("mlfsdl")
         this.node = $("<div>").attr("id", "init-view");
         
         $("<p>").text("Welcome!").appendTo(this.node);
