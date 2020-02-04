@@ -1,3 +1,14 @@
+@keyframes timer-animation {
+    0% {
+        opacity: 1;
+        transform: scale(2);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+}
+
 * {
     font-family: sans-serif;
 }
@@ -40,6 +51,31 @@ Initial view
     color: white;
 }
 
+/**********
+Pause view
+***********/
+#pause-view {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 50px;
+}
+
+#pause-view p {
+    margin: 3px;
+}
+
+#timer-display {
+    font-size: 200px;
+    opacity: 0;
+
+    animation-name: timer-animation;
+    animation-duration: 1s;
+    animation-iteration-count: 5;
+}
 
 /**********
 Trial view
