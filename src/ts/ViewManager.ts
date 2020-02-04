@@ -11,6 +11,7 @@ export enum PossibleViews {
 
 export class ViewManager {
     views: Map<PossibleViews, View<any>>
+    currentView: View<any>;
 
     constructor() {
         this.views = new Map();
@@ -20,7 +21,11 @@ export class ViewManager {
     }
 
     showView(view: PossibleViews, parameter: object = {}){
-        this.views.get(view).beforeRender(parameter);
-        this.views.get(view).render();
+        if (this.currentView) {
+            this.currentView.destroy();
+        }
+        this.currentView = this.views.get(view);
+        this.currentView.beforeRender(parameter);
+        this.currentView.render();
     }
 }
