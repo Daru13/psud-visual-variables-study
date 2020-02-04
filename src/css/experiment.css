@@ -1,3 +1,37 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+}
+
+/**********
+Trial view
+**********/
+#trial-view {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.init-state {
+    width: 50%;
+}
+
+.init-state p:first-child {
+    font-size: xx-large;
+}
+.init-state p:last-child {
+    text-align: center;
+    font-size: x-large;
+    color: red;
+}
+
 .low {
     display: grid;
     grid-template-columns: repeat(3, 50px);

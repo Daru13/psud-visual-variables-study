@@ -23,11 +23,13 @@ export class TrialView extends View<ViewParameter> {
     }
 
     private setInitPanel() {
+        let div = $("<div>").addClass("init-state").appendTo(this.node);
+
         $("<p>").text("You will be presented multiple objects. Only one looks different than the others. You will have to press SPACE as soon as you got it.")
-        .appendTo(this.node);
+        .appendTo(div);
 
         $("<p>").text("Press ENTER when ready.")
-            .appendTo(this.node);
+            .appendTo(div);
 
         let onEnter = (e: any) => {
             if (e.key === "Enter") {
@@ -41,8 +43,6 @@ export class TrialView extends View<ViewParameter> {
     }
 
     private setTestPanel() {
-        let temp = 2;
-        let vv = 1;
         let grid = $('<div>').addClass("test-state");
         let n: number;
 
