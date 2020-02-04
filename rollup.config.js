@@ -13,6 +13,7 @@ export default {
       globals: {
         "jquery": "jquery",
         "papaparse": "Papa",
+        "file-saver": "FileSaver"
       },
       plugins: [terser()]
     }
