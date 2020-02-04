@@ -3,7 +3,9 @@ import { View } from "./View";
 import { NewUserEvent } from "../events/NewUserEvent";
 import { EventManager } from "../events/EventManager";
 
-export class InitView extends View<null> {
+interface ViewParameter { };
+
+export class InitView extends View<ViewParameter> {
     beforeRender(): void {
         this.node = $("<div>").attr("id", "initial-view");
         

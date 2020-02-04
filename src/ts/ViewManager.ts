@@ -19,7 +19,7 @@ export class ViewManager {
         this.views.set(PossibleViews.TRIAL, new TrialView());
     }
 
-    showView(view: PossibleViews, parameter: any){
+    showView(view: PossibleViews, parameter: object = {}){
         this.views.get(view).beforeRender(parameter);
         this.views.get(view).render();
     }

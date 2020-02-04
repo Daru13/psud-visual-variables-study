@@ -2,6 +2,7 @@ import "jquery";
 import { ViewManager, PossibleViews } from "./ViewManager";
 import { TrialTable } from "./TrialTable";
 import { Session } from "./Session";
+import { VisualVariable, ObjectCount } from "./Trial";
 
 export class Experiment {
     private viewManager: ViewManager;
@@ -13,7 +14,7 @@ export class Experiment {
         this.trialTable = TrialTable.fromCSV();
         this.session = new Session(this.trialTable, 1);
 
-        this.viewManager.showView(PossibleViews.TRIAL, null);
+        this.viewManager.showView(PossibleViews.TRIAL, {vv: VisualVariable.Hue, oc: ObjectCount.High});
         console.log(this);
     }
 }

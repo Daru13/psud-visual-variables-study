@@ -2,7 +2,9 @@ import { View } from "./View";
 import { EventManager } from "../events/EventManager";
 import { PauseEndEvent } from "../events/PauseEndEvent";
 
-export class PauseView extends View<null> {
+interface ViewParameter { };
+
+export class PauseView extends View<ViewParameter> {
     private static readonly PAUSE_DURATION: number = 5000;
     private timer: number;
 
