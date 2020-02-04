@@ -164,3 +164,28 @@ Trial view
 .check-state .cell {
     background-color: black;
 }
+
+/*********
+Final view
+*********/
+
+#final-view {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#final-view p {
+    font-size: xx-large;
+}
+
+#final-view button {
+    padding: 5px 10px;
+
+    border-radius: 5px;
+    background-color: gray;
+    color: white;
+}
