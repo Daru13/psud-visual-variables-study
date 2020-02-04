@@ -7,19 +7,22 @@ interface ViewParameter { };
 
 export class InitView extends View<ViewParameter> {
     beforeRender(): void {
-        this.node = $("<div>").attr("id", "initial-view");
+        console.log("mlfsdl")
+        this.node = $("<div>").attr("id", "init-view");
         
         $("<p>").text("Welcome!").appendTo(this.node);
         
+        let inputNode = $("<div>").appendTo(this.node);
+
         $("<label>")
             .attr("for", "user-id-input")
-            .text("User ID")
-            .appendTo(this.node);
+            .text("User ID: ")
+            .appendTo(inputNode);
 
         let userIdInput = $("<input>")
             .attr("id", "user-id-input")
             .attr("type", "number")
-            .appendTo(this.node);
+            .appendTo(inputNode);
 
         $("<button>")
             .attr("id", "submit-user-id-button")

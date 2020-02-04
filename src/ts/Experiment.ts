@@ -14,7 +14,7 @@ export class Experiment {
         this.trialTable = TrialTable.fromCSV();
         this.session = new Session(this.trialTable, 1);
 
-        this.viewManager.showView(PossibleViews.TRIAL, {visualVariable: VisualVariable.HueAndSaturation, objectCount: ObjectCount.High});
+        this.viewManager.showView(PossibleViews.INIT);
         console.log(this);
     }
 }
