@@ -1,3 +1,10 @@
+:root{
+    --hue-1: 15;
+    --hue-2: 75;
+    --saturation-1: 35%;
+    --saturation-2: 75%;
+}
+
 @keyframes timer-animation {
     0% {
         opacity: 1;
@@ -130,35 +137,35 @@ Trial view
 }
 
 .test-state .cell.hue {
-    background-color: hsl(15, 100%, 50%);
+    background-color: hsl(var(--hue-1), 100%, 50%);
 }
 
 .test-state .cell.hue-alternate {
-    background-color: hsl(75, 100%, 50%);
+    background-color: hsl(var(--hue-2), 100%, 50%);
 }
 
 .test-state .cell.saturation {
-    background-color: hsl(50, 40%, 50%);
+    background-color: hsl(50, var(--saturation-1), 50%);
 }
 
 .test-state .cell.saturation-alternate {
-    background-color: hsl(50, 70%, 50%);
+    background-color: hsl(50, var(--saturation-2), 50%);
 }
 
 .test-state .cell.hue.saturation {
-    background-color: hsl(15, 40%, 50%);
+    background-color: hsl(var(--hue-1), var(--saturation-1), 50%);
 }
 
 .test-state .cell.hue-alternate.saturation {
-    background-color: hsl(75, 40%, 50%);
+    background-color: hsl(var(--hue-2), var(--saturation-1), 50%);
 }
 
 .test-state .cell.hue.saturation-alternate {
-    background-color: hsl(15, 70%, 50%);
+    background-color: hsl(var(--hue-1), var(--saturation-2), 50%);
 }
 
 .test-state .cell.hue-alternate.saturation-alternate {
-    background-color: hsl(75, 70%, 50%);
+    background-color: hsl(var(--hue-2), var(--saturation-2), 50%);
 }
 
 .check-state .cell {
