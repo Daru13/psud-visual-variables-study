@@ -32,9 +32,7 @@ export class Experiment {
 
         this.viewManager = new ViewManager();
         this.trialTable = TrialTable.fromCSV(demoMode);
-        if (!this.isDemo) {
-            this.logger = new Logger(this.trialTable);
-        }
+        this.logger = null;
         this.session = null;
 
         console.log(this);
@@ -90,6 +88,10 @@ export class Experiment {
 
     private onSetupCompletion(event: SetupCompletionEvent) {
         this.session = new Session(this.trialTable, event.participantID);
+        if (!this.isDemo) {
+            this.logger = new Logger(this.trialTable, this.session.participantID);
+        }
+        
         this.beginSession();
     }
 
