@@ -52,15 +52,18 @@ export class TrialView extends View<ViewParameter> {
         switch(this.parameters.objectCount) {
             case ObjectCount.Low:
                 grid.addClass("low");
-                n = 9;
+                n = parseInt(getComputedStyle(document.documentElement)
+                    .getPropertyValue('--low')) ** 2;
                 break;
             case ObjectCount.Medium:
                 grid.addClass("medium");
-                n = 16;
+                n = parseInt(getComputedStyle(document.documentElement)
+                    .getPropertyValue('--medium')) ** 2;
                 break;
             case ObjectCount.High:
                 grid.addClass("high");
-                n = 25;
+                n = parseInt(getComputedStyle(document.documentElement)
+                    .getPropertyValue('--high')) ** 2;
                 break;
             case ObjectCount.Unknown:
                 console.error("Object Count not known");

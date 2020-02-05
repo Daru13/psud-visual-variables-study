@@ -3,6 +3,9 @@
     --hue-2: 75;
     --saturation-1: 35%;
     --saturation-2: 75%;
+    --low: 3; /* size of square for low*/
+    --medium: 5;
+    --high: 7;
 }
 
 @keyframes timer-animation {
@@ -110,22 +113,22 @@ Trial view
 
 .low {
     display: grid;
-    grid-template-columns: repeat(3, 50px);
-    grid-template-rows: repeat(3, 50px);
+    grid-template-columns: repeat(var(--low), 50px);
+    grid-template-rows: repeat(var(--low), 50px);
     gap: 50px;
 }
 
 .medium {
     display: grid;
-    grid-template-columns: repeat(4, 50px);
-    grid-template-rows: repeat(4, 50px);
+    grid-template-columns: repeat(var(--medium), 50px);
+    grid-template-rows: repeat(var(--medium), 50px);
     gap: 50px;
 }
 
 .high {
     display: grid;
-    grid-template-columns: repeat(5, 50px);
-    grid-template-rows: repeat(5, 50px);
+    grid-template-columns: repeat(var(--high), 50px);
+    grid-template-rows: repeat(var(--high), 50px);
     gap: 50px;
 }
 
