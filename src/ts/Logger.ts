@@ -27,9 +27,9 @@ export class Logger {
         for (let id of this.logs.keys()) {
             const log = this.logs.get(id);
 
-            const csvTrialData = csvData.find((trial) => Number(trial["ParticipantID"]) === id);
-            csvTrialData["Duration"] = log.duration.toFixed(0);
-            csvTrialData["NbErrors"] = log.nbErrors.toFixed(0);
+            const trialDataIndex = csvData.findIndex((trial) => Number(trial["TrialID"]) === id);
+            csvData[trialDataIndex]["Duration"] = log.duration.toFixed(0);
+            csvData[trialDataIndex]["NbErrors"] = log.nbErrors.toFixed(0);
         }
 
         return Papa.unparse(csvData);

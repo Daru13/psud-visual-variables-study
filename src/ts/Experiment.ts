@@ -47,7 +47,9 @@ export class Experiment {
 
     private beginSession() {
         this.state = ExperimentState.RunningTrial;
-        this.runNextTrial();
+
+        const trial = this.session.getCurrentTrial();
+        this.viewManager.showView(PossibleViews.TRIAL, trial);
     }
 
     private endSession() {

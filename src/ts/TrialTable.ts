@@ -419,6 +419,7 @@ export class TrialTable {
     participantTrials: Map<ParticipantID, Trial[]>;
 
     private constructor(csvData: CSVData) {
+        this.sourceCSVData = csvData;
         this.participantTrials = new Map();
         this.init(csvData);
     }
