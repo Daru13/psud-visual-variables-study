@@ -102,7 +102,7 @@ export class TrialView extends View<ViewParameter> {
         let onClick = (event: any) => {
             if ($(event.target).hasClass("target")) {
                 EventManager.emit(new TrialSuccessEvent(duration, this.errorCount));
-                console.log(duration);
+                console.log(duration, this.errorCount);
                 this.node
                     .find(".cell")
                     .off("click", onClick);
