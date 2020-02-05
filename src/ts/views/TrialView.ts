@@ -6,8 +6,6 @@ import { Trial } from "../Trial";
 
 type ViewParameter = Trial;
 
-enum State { Init, Test, Check };
-
 export class TrialView extends View<ViewParameter> {
     private parameters: ViewParameter;
     private errorCount: number;

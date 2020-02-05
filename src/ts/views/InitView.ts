@@ -29,7 +29,6 @@ export class InitView extends View<ViewParameter> {
             .attr("id", "submit-user-id-button")
             .text("Submit")
             .on("click", () => {
-                console.log(userIdInput.val());
                 EventManager.emit(new SetupCompletionEvent(parseInt(userIdInput.val() as string)));
             })
             .appendTo(this.node);

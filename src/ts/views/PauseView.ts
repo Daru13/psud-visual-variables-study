@@ -26,10 +26,8 @@ export class PauseView extends View<ViewParameter> {
             if (second > 0) {
                 timerDisplay.text(second);
                 this.timer = window.setTimeout(setTimer, 1000);
-                console.log(second);
             } else {
                 EventManager.emit(new PauseTimeoutEvent());
-                console.log("Pause end");
             }
             second -= 1;
         };
