@@ -14,7 +14,8 @@ export class Session {
         this.participantID = participantID;
 
         this.trials = trialTable.participantTrials.get(participantID)
-            .sort((t1, t2) => t1.trialID - t2.trialID);
+            .sort((t1, t2) => t1.trialID - t2.trialID)
+            .sort((t1, t2) => t1.block - t2.block);
         
         this.currentTrialIndex = 0;
         this.currentTrial = this.trials[0];
