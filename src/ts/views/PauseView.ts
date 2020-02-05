@@ -9,15 +9,21 @@ export class PauseView extends View<ViewParameter> {
     private timer: number;
 
     beforeRender(): void {
-        this.node = $("<div>").attr("id", "pause-view");
+        this.node = $("<div>")
+            .attr("id", "pause-view");
 
-        $("<p>").text("Break!").appendTo(this.node);
+        $("<h1>")
+            .text("Break!")
+            .appendTo(this.node);
 
-        $("<p>").attr("id", "timer-display").appendTo(this.node);
+        $("<p>")
+            .attr("id", "timer-display")
+            .appendTo(this.node);
     }
 
     render(): void {
-        $("body").append(this.node);
+        $("body")
+            .append(this.node);
 
         let second = PauseView.PAUSE_DURATION;
         let timerDisplay = $("#timer-display");

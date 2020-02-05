@@ -2,20 +2,32 @@ import "jquery";
 import { saveAs } from "file-saver";
 import { View } from "./View";
 
-interface ViewParameter { fileName: string, csv: string };
+interface ViewParameter {
+    fileName: string;
+    csv: string;
+};
 
 export class FinalView extends View<ViewParameter> {
     beforeRender(parameter: ViewParameter): void {
-        this.node = $("<div>").attr("id", "final-view");
+        this.node = $("<div>")
+            .attr("id", "final-view");
         
-        $("<p>").text("The end!").appendTo(this.node);
+        $("<h1>")
+            .text("The end!")
+            .appendTo(this.node);
 
         if (parameter.fileName === "DEMO") {
-            $("<p>").text("Time to go to real experience.").appendTo(this.node);
+            $("<p>")
+                .text("You are now ready for the real experiment!")
+                .appendTo(this.node);
         } else {
+            $("<p>")
+                .text("Thank you for your participation.")
+                .appendTo(this.node);
+
             $("<button>")
                 .attr("id", "download-csv-button")
-                .text("Download csv")
+                .text("Download results as CSV")
                 .on("click", () => {
                     this.downloadCSVFile(parameter);
                 })
@@ -24,7 +36,8 @@ export class FinalView extends View<ViewParameter> {
     }
 
     render(): void {
-        $("body").append(this.node);
+        $("body")
+            .append(this.node);
     }
 
     destroy(): void {

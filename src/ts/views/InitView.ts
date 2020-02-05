@@ -3,39 +3,48 @@ import { View } from "./View";
 import { SetupCompletionEvent } from "../events/SetupCompletionEvent";
 import { EventManager } from "../events/EventManager";
 
-interface ViewParameter { participantsNb: number };
+interface ViewParameter {
+    nbParticipants: number;
+};
 
 export class InitView extends View<ViewParameter> {
     beforeRender(parameters: ViewParameter): void {
-        this.node = $("<div>").attr("id", "init-view");
+        this.node = $("<div>")
+            .attr("id", "init-view");
         
-        $("<p>").text("Welcome!").appendTo(this.node);
+        $("<h1>")
+            .text("Welcome!")
+            .appendTo(this.node);
+
+        $("<p>")
+            .text("Please input a participant ID to start the experiment.")
+            .appendTo(this.node);
         
-        let inputNode = $("<div>").appendTo(this.node);
+        let inputNode = $("<div>")
+            .attr("id", "participant-id-form")
+            .appendTo(this.node);
 
-        $("<label>")
-            .attr("for", "user-id-input")
-            .text("User ID: ")
-            .appendTo(inputNode);
-
-        let userIdInput = $("<input>")
-            .attr("id", "user-id-input")
+        let participantIDInput = $("<input>")
+            .attr("id", "participant-id-input")
             .attr("type", "number")
             .attr("min", "1")
-            .attr("max", parameters.participantsNb.toString())
+            .attr("max", parameters.nbParticipants.toString())
+            .attr("placeholder", "ID")
+            .prop("required", true)
             .appendTo(inputNode);
 
         $("<button>")
-            .attr("id", "submit-user-id-button")
-            .text("Submit")
+            .attr("id", "submit-participant-id-button")
+            .text("Start")
             .on("click", () => {
-                EventManager.emit(new SetupCompletionEvent(parseInt(userIdInput.val() as string)));
+                EventManager.emit(new SetupCompletionEvent(parseInt(participantIDInput.val() as string)));
             })
-            .appendTo(this.node);
+            .appendTo(inputNode);
     }
 
     render(): void {
-        $("body").append(this.node);
+        $("body")
+            .append(this.node);
     }
 
     destroy(): void {

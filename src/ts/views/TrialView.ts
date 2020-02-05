@@ -18,7 +18,8 @@ export class TrialView extends View<ViewParameter> {
     }
 
     render(): void {
-        $("body").append(this.node);
+        $("body")
+            .append(this.node);
     }
 
     destroy(): void {
@@ -26,13 +27,28 @@ export class TrialView extends View<ViewParameter> {
     }
 
     private setInitPanel() {
-        let div = $("<div>").addClass("init-state").appendTo(this.node);
+        let container = $("<div>")
+            .addClass("init-state")
+            .appendTo(this.node);
 
-        $("<p>").text("You will be presented multiple objects. Only one looks different than the others. You will have to press SPACE as soon as you got it.")
-        .appendTo(div);
+        $("<p>")
+            .html("You will be presented multiple colorful discs. Only one of them has a <strong>unique color</strong>, and you must <strong>find it as quickly as possible<strong>.")
+            .appendTo(container);
 
-        $("<p>").text("Press SPACE when ready.")
-            .appendTo(div);
+        const instructions = $("<ol>")
+            .append("<li>immediately <strong>press SPACE</strong></li>")
+            .append("<li>click on the dot you found</li>")
+            .appendTo(container);
+
+        $("<p>")
+            .text("When you find it, please")
+            .append(instructions)
+            .appendTo(container);
+        
+        $("<p>")
+            .addClass("important-message")
+            .html("Press SPACE to start!")
+            .appendTo(container);
 
         let onEnter = (e: any) => {
             if (e.key === " ") {
@@ -42,7 +58,8 @@ export class TrialView extends View<ViewParameter> {
             }
         };
 
-        $("body").on("keyup", onEnter);
+        $("body")
+            .on("keyup", onEnter);
     }
 
     private setTestPanel() {
