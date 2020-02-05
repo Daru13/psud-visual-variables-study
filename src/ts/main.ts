@@ -1,3 +1,7 @@
 import { Experiment } from './Experiment';
 
-new Experiment();
+function newExperiment(demoMode = false) {
+    new Experiment(demoMode);
+}
+
+(window as any)["newExperiment"] = newExperiment;

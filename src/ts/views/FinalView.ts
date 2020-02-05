@@ -10,13 +10,17 @@ export class FinalView extends View<ViewParameter> {
         
         $("<p>").text("The end!").appendTo(this.node);
 
-        $("<button>")
-            .attr("id", "download-csv-button")
-            .text("Download csv")
-            .on("click", () => {
-                this.downloadCSVFile(parameter);
-            })
-            .appendTo(this.node);
+        if (parameter.fileName === "DEMO") {
+            $("<p>").text("Time to go to real experience.").appendTo(this.node);
+        } else {
+            $("<button>")
+                .attr("id", "download-csv-button")
+                .text("Download csv")
+                .on("click", () => {
+                    this.downloadCSVFile(parameter);
+                })
+                .appendTo(this.node);
+        }
     }
 
     render(): void {

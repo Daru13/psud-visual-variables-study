@@ -24,13 +24,17 @@ export class Experiment {
     private trialTable: TrialTable;
     private logger: Logger;
     private session: Session;
+    private isDemo: boolean
 
-    constructor() {
+    constructor(demoMode = false) {
+        this.isDemo = demoMode;
         this.state = ExperimentState.Init;
 
         this.viewManager = new ViewManager();
-        this.trialTable = TrialTable.fromCSV();
-        this.logger = new Logger(this.trialTable);
+        this.trialTable = TrialTable.fromCSV(demoMode);
+        if (!this.isDemo) {
+            this.logger = new Logger(this.trialTable);
+        }
         this.session = null;
 
         console.log(this);
@@ -54,10 +58,17 @@ export class Experiment {
 
     private endSession() {
         this.state = ExperimentState.Finished;
-        this.viewManager.showView(PossibleViews.FINAL, {
-            fileName: `P${this.session.participantID}-${Date.now()}`,
-            csv: this.logger.toCSV()
-        });
+        if (!this.isDemo) {
+            this.viewManager.showView(PossibleViews.FINAL, {
+                fileName: `P${this.session.participantID}-${Date.now()}`,
+                csv: this.logger.toCSV()
+            });
+        } else {
+            this.viewManager.showView(PossibleViews.FINAL, {
+                fileName: "DEMO",
+                csv: ""
+            });
+        }
     }
 
     private beginPause() {
@@ -84,12 +95,14 @@ export class Experiment {
 
     private onTrialSuccess(event: TrialSuccessEvent) {
         // Log the results of the current trial
-        this.logger.log({
-            trialID: this.session.getCurrentTrial().trialID,
-            duration: event.duration,
-            nbErrors: event.errorCount
-        });
-
+        if(!this.isDemo){
+            this.logger.log({
+                trialID: this.session.getCurrentTrial().trialID,
+                duration: event.duration,
+                nbErrors: event.errorCount
+            });
+        }
+        
         // Continue the experiment
         if (this.session.isSessionFinished()) {
             this.endSession();

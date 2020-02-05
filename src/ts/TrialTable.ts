@@ -411,6 +411,18 @@ Design 1,9,403,3,11,Medium,Hue
 Design 1,9,404,3,12,Medium,Saturation
 Design 1,9,405,3,13,Medium,Hue`;
 
+const DEMO_TRIAL_TABLE_CSV =
+`DesignName,ParticipantID,TrialID,Block1,Block2,OC,VV
+Design 0,1,1,1,1,Medium,Saturation
+Design 0,1,2,1,2,Medium,Hue_Saturation
+Design 0,1,3,1,3,Medium,Hue
+Design 0,1,4,2,1,Low,Saturation
+Design 0,1,5,2,2,Low,Hue_Saturation
+Design 0,1,6,2,3,Low,Hue
+Design 0,1,7,3,1,High,Saturation
+Design 0,1,8,3,2,High,Hue_Saturation
+Design 0,1,9,3,3,High,Hue`;
+
 export type CSVDataRow = Record<string, string>;
 export type CSVData = CSVDataRow[];
 
@@ -437,8 +449,9 @@ export class TrialTable {
         }
     }
 
-    static fromCSV(): TrialTable {
-        const csv = Papa.parse(TRIAL_TABLE_CSV, { header: true });
+    static fromCSV(demoMode = false): TrialTable {
+        const table = (demoMode) ? DEMO_TRIAL_TABLE_CSV : TRIAL_TABLE_CSV;
+        const csv = Papa.parse(table, { header: true });
         return new TrialTable(csv.data);
     }
 }
