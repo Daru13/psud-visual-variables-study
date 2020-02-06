@@ -1,6 +1,6 @@
 import * as Papa from "papaparse";
 import { ParticipantID } from './Session';
-import { Trial, ObjectCount } from './Trial';
+import { Trial } from './Trial';
 
 
 const TRIAL_TABLE_CSV = 

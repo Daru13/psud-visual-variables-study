@@ -1,4 +1,4 @@
-import { Trial, TrialID } from "./Trial";
+import { Trial } from "./Trial";
 import { TrialTable } from "./TrialTable";
 
 export type ParticipantID = number;

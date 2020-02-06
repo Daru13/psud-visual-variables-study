@@ -2,7 +2,6 @@ import "jquery";
 import { ViewManager, PossibleViews } from "./ViewManager";
 import { TrialTable } from "./TrialTable";
 import { Session } from "./Session";
-import { VisualVariable, ObjectCount } from "./Trial";
 import { EventManager } from './events/EventManager';
 import { SetupCompletionEvent } from './events/SetupCompletionEvent';
 import { TrialSuccessEvent } from './events/TrialSuccessEvent';

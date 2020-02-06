@@ -1,5 +1,4 @@
 import "jquery";
-import { saveAs } from "file-saver";
 import { View } from "./View";
 
 interface ViewParameter {
