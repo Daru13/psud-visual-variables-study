@@ -140,12 +140,14 @@ export class TrialView extends View<ViewParameter> {
         let possibilities = [];
         switch (this.parameters.visualVariable) {
             case VisualVariable.Hue:
-                possibilities.push("hue");
-                possibilities.push("hue-alternate");
+                const saturation = ["saturation", "saturation-alternate"][Math.floor(Math.random() * 2)];
+                possibilities.push(`hue ${saturation}`);
+                possibilities.push(`hue-alternate ${saturation}`);
                 break;
             case VisualVariable.Saturation:
-                possibilities.push("saturation");
-                possibilities.push("saturation-alternate");
+                const hue = ["hue", "hue-alternate"][Math.floor(Math.random() * 2)];
+                possibilities.push(`saturation ${hue}`);
+                possibilities.push(`saturation-alternate ${hue}`);
                 break;
             case VisualVariable.HueAndSaturation:
                 possibilities.push("hue saturation");

@@ -1,8 +1,11 @@
 :root {
-    --hue-1: 15;
-    --hue-2: 75;
-    --saturation-1: 35%;
-    --saturation-2: 75%;
+    --hue-1: 26;
+    --hue-2: 244;
+    --saturation-1: 30%;
+    --saturation-2: 100%;
+
+    --luminance: 70%;
+
     --low: 3; /* size of square for low*/
     --medium: 5;
     --high: 7;
@@ -19,7 +22,7 @@
     }
 }
 
-* {
+* {
     font-family: sans-serif;
 }
 
@@ -78,6 +81,7 @@ Initial view
 
 #participant-id-form {
     margin: 10px 0 0 0;
+    min-width: 200px;
 }
 
 #participant-id-input {
@@ -159,36 +163,20 @@ Trial view
     height: 100%;
 }
 
-.test-state .cell.hue {
-    background-color: hsl(var(--hue-1), 100%, 50%);
-}
-
-.test-state .cell.hue-alternate {
-    background-color: hsl(var(--hue-2), 100%, 50%);
-}
-
-.test-state .cell.saturation {
-    background-color: hsl(50, var(--saturation-1), 50%);
-}
-
-.test-state .cell.saturation-alternate {
-    background-color: hsl(50, var(--saturation-2), 50%);
-}
-
 .test-state .cell.hue.saturation {
-    background-color: hsl(var(--hue-1), var(--saturation-1), 50%);
+    background-color: hsl(var(--hue-1), var(--saturation-1), var(--luminance));
 }
 
 .test-state .cell.hue-alternate.saturation {
-    background-color: hsl(var(--hue-2), var(--saturation-1), 50%);
+    background-color: hsl(var(--hue-2), var(--saturation-1), var(--luminance));
 }
 
 .test-state .cell.hue.saturation-alternate {
-    background-color: hsl(var(--hue-1), var(--saturation-2), 50%);
+    background-color: hsl(var(--hue-1), var(--saturation-2), var(--luminance));
 }
 
 .test-state .cell.hue-alternate.saturation-alternate {
-    background-color: hsl(var(--hue-2), var(--saturation-2), 50%);
+    background-color: hsl(var(--hue-2), var(--saturation-2), var(--luminance));
 }
 
 .check-state .cell {
