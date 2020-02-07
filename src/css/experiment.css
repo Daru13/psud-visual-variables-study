@@ -1,11 +1,4 @@
 :root {
-    --hue-1: 26;
-    --hue-2: 244;
-    --saturation-1: 30%;
-    --saturation-2: 100%;
-
-    --luminance: 70%;
-
     --low: 3; /* size of square for low*/
     --medium: 5;
     --high: 7;
@@ -166,19 +159,19 @@ Trial view
 }
 
 .test-state .cell.hue.saturation {
-    background-color: hsl(var(--hue-1), var(--saturation-1), var(--luminance));
+    background-color: #d95e00;
 }
 
 .test-state .cell.hue-alternate.saturation {
-    background-color: hsl(var(--hue-2), var(--saturation-1), var(--luminance));
+    background-color: #0c00b3;
 }
 
 .test-state .cell.hue.saturation-alternate {
-    background-color: hsl(var(--hue-1), var(--saturation-2), var(--luminance));
+    background-color: #d1a07b;
 }
 
 .test-state .cell.hue-alternate.saturation-alternate {
-    background-color: hsl(var(--hue-2), var(--saturation-2), var(--luminance));
+    background-color: #2e2975;
 }
 
 .check-state .cell {
