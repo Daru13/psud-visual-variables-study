@@ -6,16 +6,21 @@ from colormath.color_diff import delta_e_cie2000
 
 
 # Base colors
-color_1 = sRGBColor.new_from_rgb_hex("#d95f02")
+#color_1 = sRGBColor.new_from_rgb_hex("#d95f02")
 #color_2 = sRGBColor.new_from_rgb_hex("#7570b3")
-color_2 = sRGBColor.new_from_rgb_hex("#3E36B3")
+#color_2 = sRGBColor.new_from_rgb_hex("#3E36B3")
+
+color_1 = sRGBColor.new_from_rgb_hex("#D95E00")
+color_2 = sRGBColor.new_from_rgb_hex("#0C00B3")
+
+
 
 
 # Optimisation parameters
 nb_final_candidates = 5
 
-max_luminance_distance = 0.03
-min_saturation_distance = 0.1
+max_luminance_distance = 0.05
+min_saturation_distance = 0.5
 
 min_saturation = 0.25
 
