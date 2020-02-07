@@ -7,6 +7,9 @@ interface ViewParameter {
     nbParticipants: number;
 };
 
+/**
+ * A class to display the initial view where you can select the participant number.
+ */
 export class InitView extends View<ViewParameter> {
     beforeRender(parameters: ViewParameter): void {
         this.node = $("<div>")

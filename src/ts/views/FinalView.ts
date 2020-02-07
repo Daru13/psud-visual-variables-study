@@ -6,6 +6,9 @@ interface ViewParameter {
     csv: string;
 };
 
+/**
+ * A class to display a trial view where you can download the csv.
+ */
 export class FinalView extends View<ViewParameter> {
     beforeRender(parameter: ViewParameter): void {
         this.node = $("<div>")
@@ -43,6 +46,10 @@ export class FinalView extends View<ViewParameter> {
         this.node.remove();
     }
 
+    /**
+     * Downloads the csv file passed as parameter for this view.
+     * @param parameter Final view parameter.
+     */
     downloadCSVFile(parameter: ViewParameter) {
         let filename = parameter.fileName
         let csvFileBlob = new Blob([parameter.csv], { type: "text/csv;charset=utf-8" });

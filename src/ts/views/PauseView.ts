@@ -4,6 +4,9 @@ import { PauseTimeoutEvent } from "../events/PauseTimeoutEvent";
 
 interface ViewParameter { };
 
+/**
+ * A class to display a pause view.
+ */
 export class PauseView extends View<ViewParameter> {
     private static readonly PAUSE_DURATION: number = 5;
     private timer: number;

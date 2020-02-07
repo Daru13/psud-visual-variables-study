@@ -6,6 +6,9 @@ import { Trial } from "../Trial";
 
 type ViewParameter = Trial;
 
+/**
+ * A class to display a trial view.
+ */
 export class TrialView extends View<ViewParameter> {
     private parameters: ViewParameter;
     private errorCount: number;
@@ -26,6 +29,9 @@ export class TrialView extends View<ViewParameter> {
         this.node.remove();
     }
 
+    /**
+     * Sets the panel with instructions for the trial.
+     */
     private setInitPanel() {
         let container = $("<div>")
             .addClass("init-state")
@@ -62,6 +68,9 @@ export class TrialView extends View<ViewParameter> {
             .on("keyup", onEnter);
     }
 
+    /**
+     * Sets the panel where the user has to spot the different element.
+     */
     private setTestPanel() {
         let grid = $('<div>').addClass("test-state");
         let n: number;
@@ -110,6 +119,10 @@ export class TrialView extends View<ViewParameter> {
         startTime = Date.now();
     }
 
+    /**
+     * Sets the panel where the user has click where the different element was.
+     * @param duration Time the user did to find the different element.
+     */
     private setCheckPanel(duration: number) {
         this.node
             .find(".test-state")
@@ -135,17 +148,23 @@ export class TrialView extends View<ViewParameter> {
             .on("click", onClick);
     }
 
+    /**
+     * Gets an array of css class which define colors.
+     * @param n Size of the array.
+     * @param differentTargetIndex Index of the unique value in the array.
+     * @returns A list of css class that defines colors. In the array there is one and only one class which is in array only once. This class index is differentTargetIndex.
+     */
     private getColorList(n: number, differentTargetIndex: number): string[] {
-        let colors: string[] = [];
-        let possibilities = [];
+        let colors: string[] = []; // returned array
+        let possibilities = []; // possible value for the element
         switch (this.parameters.visualVariable) {
             case VisualVariable.Hue:
-                const saturation = ["saturation", "saturation-alternate"][Math.floor(Math.random() * 2)];
+                const saturation = ["saturation", "saturation-alternate"][this.randomInt(2)];
                 possibilities.push(`hue ${saturation}`);
                 possibilities.push(`hue-alternate ${saturation}`);
                 break;
             case VisualVariable.Saturation:
-                const hue = ["hue", "hue-alternate"][Math.floor(Math.random() * 2)];
+                const hue = ["hue", "hue-alternate"][this.randomInt(2)];
                 possibilities.push(`saturation ${hue}`);
                 possibilities.push(`saturation-alternate ${hue}`);
                 break;
@@ -156,24 +175,40 @@ export class TrialView extends View<ViewParameter> {
                 possibilities.push("hue-alternate saturation-alternate");
         }
 
+        // Randomize the array of possibilities
         possibilities.sort(() => Math.random() - 0.5);
 
+        // Choose the value for the unique element
         let unique = possibilities.pop();
         let possibility;
 
+        // Make sure that other possibilities are present at least two times in the color array
         possibilities.forEach((possibility) => {
             colors.push(possibility);
             colors.push(possibility);
         });
 
+        // Fill the color array until missing value
         while (colors.length < n - 1) {
-            possibility = possibilities[Math.floor(Math.random() * possibilities.length)];
+            possibility = possibilities[this.randomInt(possibilities.length)];
             colors.push(possibility);
         }
 
+        // Randomize the colors
         colors.sort(() => Math.random() - 0.5);
+        
+        // Add the unique value to the index given as parameter for this function
         colors.splice(differentTargetIndex, 0, unique);
         
         return colors;
+    }
+
+    /**
+     * Return a random int.
+     * @param n Max number for the interval where to pick the random int.
+     * @returns A random int between [0, n[.
+     */
+    private randomInt(n: number): number {
+        return Math.floor(Math.random() * n);
     }
 }
