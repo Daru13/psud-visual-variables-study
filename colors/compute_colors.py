@@ -92,7 +92,7 @@ for sat in tqdm(sat_domain):
             desaturated_lab_color_2 = convert_color(desaturated_color_2, LabColor)
 
             # Compute the distance_diff between them and the diff of distance
-            distance = delta_e_cie2000(desaturated_lab_color_1, desaturated_lab_color_2)
+            distance = delta_e_cie2000(desaturated_lab_color_1, desaturated_lab_color_2) + delta_e_cie2000(desaturated_lab_color_1, lab_color_1) + delta_e_cie2000(desaturated_lab_color_2, lab_color_2)
             distance_diff = np.abs(distance - initial_distance)
 
             # Update the list of candidates

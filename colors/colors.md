@@ -3,5 +3,5 @@
 #0c00b3
 
 # Desaturated colors
-#d1a07b
-#2e2975
+#a76939
+#3b3498
