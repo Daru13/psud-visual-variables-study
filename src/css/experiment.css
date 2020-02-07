@@ -45,7 +45,6 @@ h1 {
 button {
     display: block;
     width: 100%;
-    max-width: 60%;
     margin: 20px 0;
     padding: 10px 20px;
     font-size: 28px;
@@ -80,13 +79,16 @@ Initial view
 }
 
 #participant-id-form {
+    min-width: 400px;
     margin: 10px 0 0 0;
     min-width: 200px;
 }
 
 #participant-id-input {
+    width: 100%;
     min-height: 50px;
     font-size: 28px;
+    box-sizing: border-box;
 }
 
 
@@ -196,4 +198,8 @@ Final view
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+#download-csv-button {
+    max-width: 60%;
 }
